@@ -1,0 +1,25 @@
+name: Flask App CI
+
+on:
+  push:
+    branches:
+      - quiz2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: pip install flask pytest
+
+    - name: Run tests
+      run: python -m unittest test_app.py
